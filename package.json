@@ -1,0 +1,23 @@
+{
+  "name": "xello-frontend",
+  "version": "1.0.0",
+  "description": "xello frontend test",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanbloch87/xello-frontend.git"
+  },
+  "keywords": [
+    "xello",
+    "frontend"
+  ],
+  "author": "yan bloch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanbloch87/xello-frontend/issues"
+  },
+  "homepage": "https://github.com/yanbloch87/xello-frontend#readme"
+}
