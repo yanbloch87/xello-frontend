@@ -68,6 +68,7 @@ export class TooltipDirective implements OnInit {
         this.renderer.removeClass(tooltipEl, 'top');
         const top = this.el.nativeElement.offsetTop + this.el.nativeElement.offsetHeight + TIP_SIZE;
         this.renderer.setStyle(tooltipEl, 'top', `${top}px`);
+        window.removeEventListener('scroll', onWindowScroll);
       }
     };
     window.addEventListener('scroll', onWindowScroll);
