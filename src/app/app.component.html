@@ -2,7 +2,14 @@
 
 <div class="main cover-container d-flex h-100 p-3 mx-auto flex-column">
   <main role="main" class="inner cover">
-    <button class="btn btn-lg btn-success m-2" tooltip="Hello, I'm button a's tooltip text">BUTTON A</button>
-    <button class="btn btn-lg btn-info m-2" tooltip="Hi there, I'm button b's tooltip text">BUTTON B</button>
+    <button class="btn btn-lg btn-success m-2"
+            [tooltip]="buttonATooltip">
+      BUTTON A
+    </button>
+
+    <button class="btn btn-lg btn-info m-2"
+            [tooltip]="buttonBTooltip">
+      BUTTON B
+    </button>
   </main>
 </div>

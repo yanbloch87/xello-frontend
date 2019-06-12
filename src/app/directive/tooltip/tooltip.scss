@@ -9,8 +9,33 @@
   z-index: 1;
   border-radius: 8px;
   box-shadow: 3px 3px 4px black;
+  border: 1px solid white;
 
   &:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 9px solid rgba(255,255,255,0);
+    border-right: 9px solid rgba(255,255,255,0);
+    z-index: 3;
+    background: transparent;
+  }
+
+  &.top {
+    &:before {
+      border-top: 9px solid black;
+      bottom: -9px;
+    }
+  }
+
+  &.bottom {
+    &:before {
+      border-bottom: 9px solid black;
+      top: -9px;
+    }
+  }
+
+  &:after {
     content: "";
     position: absolute;
     width: 0;
@@ -21,15 +46,15 @@
   }
 
   &.top {
-    &:before {
-      border-top: 10px solid black;
+    &:after {
+      border-top: 10px solid white;
       bottom: -10px;
     }
   }
 
   &.bottom {
-    &:before {
-      border-bottom: 10px solid black;
+    &:after {
+      border-bottom: 10px solid white;
       top: -10px;
     }
   }
