@@ -64,9 +64,10 @@ export class TooltipDirective implements OnInit {
     const onWindowScroll = () => {
       const {y}: DOMRect = tooltipEl.getBoundingClientRect() as DOMRect;
       if (y <= 0 && !tooltipEl.className.includes('bottom')) {
-        tooltipEl.className = 'xello-tooltip p-2 bottom';
+        this.renderer.addClass(tooltipEl, 'bottom');
+        this.renderer.removeClass(tooltipEl, 'top');
         const top = this.el.nativeElement.offsetTop + this.el.nativeElement.offsetHeight + TIP_SIZE;
-        tooltipEl.style.top = `${top}px`;
+        this.renderer.setStyle(tooltipEl, 'top', `${top}px`);
       }
     };
     window.addEventListener('scroll', onWindowScroll);
@@ -75,17 +76,6 @@ export class TooltipDirective implements OnInit {
   private _subscribeWindowResize(tooltipEl: HTMLDivElement) {
     const onWindowResize = () => this._drawTooltipEl(tooltipEl);
     window.addEventListener('resize', onWindowResize);
-
-    const options = {
-      root: tooltipEl,
-      rootMargin: '0px',
-      threshold: 1.0
-    };
-
-    const observer = new IntersectionObserver(() => {
-      console.log();
-    }, options);
-    observer.observe(tooltipEl);
   }
 
 }
