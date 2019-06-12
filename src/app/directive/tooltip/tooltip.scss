@@ -15,23 +15,23 @@
     content: "";
     position: absolute;
     width: 0;
-    border-left: 9px solid rgba(255,255,255,0);
-    border-right: 9px solid rgba(255,255,255,0);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
     z-index: 3;
     background: transparent;
   }
 
   &.top {
     &:before {
-      border-top: 9px solid black;
-      bottom: -9px;
+      border-top: 8px solid black;
+      bottom: -8px;
     }
   }
 
   &.bottom {
     &:before {
-      border-bottom: 9px solid black;
-      top: -9px;
+      border-bottom: 8px solid black;
+      top: -8px;
     }
   }
 
@@ -39,8 +39,8 @@
     content: "";
     position: absolute;
     width: 0;
-    border-left: 10px solid rgba(255,255,255,0);
-    border-right: 10px solid rgba(255,255,255,0);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
     z-index: 2;
     background: transparent;
   }
