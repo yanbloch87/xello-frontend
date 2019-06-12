@@ -25,7 +25,7 @@ export class TooltipDirective implements OnInit {
     this._subscribeWindowScroll(tooltipEl);
     this._subscribeWindowResize(tooltipEl);
     this._drawTooltipEl(tooltipEl);
-    this.renderer.appendChild(document.body, tooltipEl);
+    document.body.appendChild(tooltipEl);
   }
 
   private _drawTooltipEl(tooltipEl: HTMLDivElement) {
@@ -50,25 +50,38 @@ export class TooltipDirective implements OnInit {
   }
 
   private _subscribeWindowClick(tooltipEl: HTMLDivElement) {
+    const clearTooltip = () => {
+      document.body.removeChild(tooltipEl);
+      window.removeEventListener('click', onWindowClick);
+      window.removeEventListener('keydown', onWindowKeydown);
+      this._subscribeElClick();
+    };
+
     const onWindowClick = (event: MouseEvent) => {
       if (![this.el.nativeElement, tooltipEl].includes(event.target)) {
-        this.renderer.removeChild(document.body, tooltipEl);
-        window.removeEventListener('click', onWindowClick);
-        this._subscribeElClick();
+        clearTooltip();
       }
     };
+
+    const onWindowKeydown = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        clearTooltip();
+      }
+    };
+
     window.addEventListener('click', onWindowClick);
+    window.addEventListener('keydown', onWindowKeydown);
   }
 
   private _subscribeWindowScroll(tooltipEl: HTMLDivElement) {
     const onWindowScroll = () => {
       const {y}: DOMRect = tooltipEl.getBoundingClientRect() as DOMRect;
       if (y <= 0 && !tooltipEl.className.includes('bottom')) {
+        window.removeEventListener('scroll', onWindowScroll);
         this.renderer.addClass(tooltipEl, 'bottom');
         this.renderer.removeClass(tooltipEl, 'top');
         const top = this.el.nativeElement.offsetTop + this.el.nativeElement.offsetHeight + TIP_SIZE;
         this.renderer.setStyle(tooltipEl, 'top', `${top}px`);
-        window.removeEventListener('scroll', onWindowScroll);
       }
     };
     window.addEventListener('scroll', onWindowScroll);
