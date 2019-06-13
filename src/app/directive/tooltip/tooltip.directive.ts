@@ -51,7 +51,7 @@ export class TooltipDirective implements OnInit {
 
   private _subscribeWindowClick(tooltipEl: HTMLDivElement) {
     const clearTooltip = () => {
-      document.body.removeChild(tooltipEl);
+      this.renderer.removeChild(document.body, tooltipEl);
       window.removeEventListener('click', onWindowClick);
       window.removeEventListener('keydown', onWindowKeydown);
       this._subscribeElClick();
